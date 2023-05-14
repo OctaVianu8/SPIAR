@@ -18,6 +18,7 @@ class _AdminAlertState extends State<AdminAlert> {
         TextButton(
           child: const Text('Enter'),
           onPressed: () {
+            Navigator.pop(context);
             Navigator.pushNamed(context, '/configure');
           },
         ),
