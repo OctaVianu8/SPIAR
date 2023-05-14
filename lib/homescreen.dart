@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  LatLng initialCoord = const LatLng(43.925195174024616, 24.6077956590227);
+  LatLng initialCoord = const LatLng(43.925195174024616, 24.6077556590227);
   double defaultZoom = 15;
 
   late Marker robotMarker;
@@ -23,13 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<double> saltX = [
-    -0.00450561439,
+    -0.00450701439,
     -0.00003681722,
     0.00449506533,
     -0.00001917849
   ];
   List<double> saltY = [
-    0.00130659066,
+    0.00129770066,
     -0.00015359409,
     -0.00130676069,
     -0.00015312481
@@ -38,6 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
   double startY = 24.60903142773457;
   Set<Polyline> _polyline = {};
   List<LatLng> latLen = [];
+  bool showPolyline = true;
+  bool showPolygon = true;
 
   @override
   void initState() {
@@ -81,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context) => const [
               PopupMenuItem(
                 value: 0,
+                enabled: true,
                 child: Text("Show today's crossed path"),
               ),
               PopupMenuItem(
@@ -89,10 +92,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               PopupMenuItem(
                 value: 2,
-                child: Text("Admin settings"),
+                child: Text("Admin panel"),
               ),
             ],
             onSelected: (value) {
+              if (value == 0) {
+                setState(() {
+                  showPolyline = !showPolyline;
+                });
+              }
+              if (value == 1) {
+                setState(() {
+                  showPolygon = !showPolygon;
+                });
+              }
               if (value == 2) {
                 showDialog(
                     context: context, builder: (context) => const AdminAlert());
@@ -102,7 +115,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: GoogleMap(
-        polylines: _polyline,
+        polygons: showPolygon
+            ? {
+                Polygon(
+                    polygonId: const PolygonId("1"),
+                    fillColor: Colors.yellow.withOpacity(0.2),
+                    strokeWidth: 2,
+                    strokeColor: Colors.yellow.withOpacity(0.7),
+                    points: const [
+                      LatLng(43.926179372152056, 24.609155652597998),
+                      LatLng(43.92146674268428, 24.61042464704549),
+                      LatLng(43.915847261225274, 24.588655371012596),
+                      LatLng(43.920584314210004, 24.586320358599945),
+                    ]),
+              }
+            : {},
+        polylines: showPolyline ? _polyline : {},
         markers: {robotMarker},
         zoomControlsEnabled: false,
         onMapCreated: (controller) => _googleMapController = controller,
