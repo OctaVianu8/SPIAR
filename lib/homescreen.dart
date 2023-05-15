@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   LatLng initialCoord = const LatLng(43.925195174024616, 24.6077556590227);
-  double defaultZoom = 15;
+  double defaultZoom = 16;
 
   late Marker robotMarker;
   late CameraPosition _initCameraPosition;
@@ -77,7 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("S.P.I.A.R. Map"),
+        centerTitle: true,
+        title: const Text(
+          "S.P.I.A.R. Map",
+          style: TextStyle(fontSize: 25),
+        ),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => const [
@@ -115,7 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
               }
               if (value == 3) {
                 showDialog(
-                    context: context, builder: (context) => AdminAlert(generator: false,));
+                    context: context,
+                    builder: (context) => AdminAlert(
+                          generator: false,
+                        ));
               }
             },
           ),

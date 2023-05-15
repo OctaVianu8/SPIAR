@@ -21,17 +21,25 @@ class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     List<ListTileStrings> infoTiles = [
+      ListTileStrings('', '', ''),
       ListTileStrings(
           'Distance traveled', '', '${distanceTraveled.toString()} km'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Area covered', '',
           '${(distanceTraveled * spiarWidth / 10).toString()} ha'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Battery remaining (%)', '', '86%'),
+      ListTileStrings('', '', ''),
       ListTileStrings(
           'Battery autonomy remaining', '(hours, w/o solar panels)', '10.8h'),
+      ListTileStrings('', '', ''),
       ListTileStrings(
           'Battery autonomy remaining', '(hours, with solar panels)', '12.0h'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Battery health', '', '100%'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Average Solar Panels Power Today', '', '10.2 KW'),
+      ListTileStrings('', '', ''),
     ];
 
     return Scaffold(
@@ -39,24 +47,31 @@ class _AdminScreenState extends State<AdminScreen> {
       body: ListView(
         children: [
           const ListTile(
-            title: Text(
-              'INFO',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            title: Center(
+              child: Text(
+                'INFO',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
           ...infoTiles.map(
-            (e) => ListTile(
-              title: Text(e.title),
-              subtitle: e.subtitle != '' ? Text(e.subtitle) : null,
-              trailing: Text(e.trailing),
-            ),
+            (e) => e.title == ''
+                ? const Divider(thickness: 1)
+                : ListTile(
+                    title: Text(e.title),
+                    subtitle: e.subtitle != '' ? Text(e.subtitle) : null,
+                    trailing: Text(e.trailing),
+                  ),
           ),
           const ListTile(
-            title: Text(
-              'SETTINGS',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            title: Center(
+              child: Text(
+                'SETTINGS',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
+          const Divider(thickness: 1),
           SwitchListTile(
             title: Text('Sprinklers'),
             value: widget.sprinklerState,

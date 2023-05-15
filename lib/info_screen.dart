@@ -27,8 +27,11 @@ class _InfoScreenState extends State<InfoScreen> {
   Widget build(BuildContext context) {
     List<ListTileStrings> infoTiles = [
       ListTileStrings('Solar Panels Power', '', '12.3 KW'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Field incline', '', '3.1 degrees'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Throttle Setting', '', '70%'),
+      ListTileStrings('', '', ''),
       ListTileStrings('Current speed', '', '12.7 km/h'),
     ];
     _controller.play();
@@ -40,16 +43,25 @@ class _InfoScreenState extends State<InfoScreen> {
       body: ListView(
         children: [
           ...infoTiles.map(
-            (e) => ListTile(
-              title: Text(e.title),
-              subtitle: e.subtitle != '' ? Text(e.subtitle) : null,
-              trailing: Text(e.trailing),
-            ),
+            (e) => e.title == ''
+                ? const Divider(thickness: 1)
+                : ListTile(
+                    title: Text(e.title),
+                    subtitle: e.subtitle != '' ? Text(e.subtitle) : null,
+                    trailing: Text(e.trailing),
+                  ),
           ),
+          Divider(thickness: 1),
           _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
+              ? Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  padding: const EdgeInsets.all(8),
+                  child: AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: VideoPlayer(_controller),
+                  ),
                 )
               : Container(),
         ],
