@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'configurescreen.dart';
+import 'admin_screen.dart';
 import 'homescreen.dart';
+import 'info_screen.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const HomeScreen(),
-        '/configure': (context) => ConfigureScreen(),
+        '/admin': (context) => AdminScreen(),
+        '/info': (context) => const InfoScreen(),
       },
     );
   }

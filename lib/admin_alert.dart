@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AdminAlert extends StatefulWidget {
-  const AdminAlert({super.key});
-
+  AdminAlert({required this.generator, super.key});
+  bool generator;
   @override
   State<AdminAlert> createState() => _AdminAlertState();
 }
@@ -12,14 +12,15 @@ class _AdminAlertState extends State<AdminAlert> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Alert'),
-      content: Text(
-          'You need administrator priviliges to access the configure tab.'),
+      content: Text(widget.generator
+          ? 'Are you sure you want to toggle the generator?'
+          : 'You need administrator priviliges to access the configure tab.'),
       actions: [
         TextButton(
           child: const Text('Enter'),
           onPressed: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/configure');
+            Navigator.pop(context, 1);
+            if (!widget.generator) Navigator.pushNamed(context, '/admin');
           },
         ),
       ],

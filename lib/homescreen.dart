@@ -92,7 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               PopupMenuItem(
                 value: 2,
-                child: Text("Admin panel"),
+                child: Text("Realtime Info panel"),
+              ),
+              PopupMenuItem(
+                value: 3,
+                child: Text("Admin Panel"),
               ),
             ],
             onSelected: (value) {
@@ -107,8 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               }
               if (value == 2) {
+                Navigator.pushNamed(context, '/info');
+              }
+              if (value == 3) {
                 showDialog(
-                    context: context, builder: (context) => const AdminAlert());
+                    context: context, builder: (context) => AdminAlert(generator: false,));
               }
             },
           ),
