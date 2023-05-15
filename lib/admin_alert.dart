@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AdminAlert extends StatefulWidget {
   AdminAlert({required this.generator, super.key});
   bool generator;

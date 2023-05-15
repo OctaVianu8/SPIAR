@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'admin_alert.dart';
 import 'classes.dart';
 
+// ignore: must_be_immutable
 class AdminScreen extends StatefulWidget {
   AdminScreen({super.key});
   bool sprinklerState = false;
