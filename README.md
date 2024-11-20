@@ -1,16 +1,10 @@
-# spiar
+# SPIAR Companion App
 
-A new Flutter project.
+The SPIAR Companion App is a concept front-end for managing the SPIAR solar-powered tractor.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+    Track History: See where the tractor has been.
+    Adjust Settings: Change operational parameters.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Note: This is a demonstration, not a fully functional app.
